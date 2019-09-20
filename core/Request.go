@@ -2,11 +2,12 @@ package core
 
 import (
 	"crypto/md5"
+	"encoding/json"
 	"fmt"
 	"github.com/google/uuid"
 	"io"
 	"strings"
-	"encoding/json"
+	"time"
 )
 
 //go:generate go get github.com/google/uuid
@@ -70,7 +71,7 @@ func JsonEncode(data interface{}) string {
 }
 func JsonDecode(data string, v interface{})  {
 	err := json.Unmarshal([]byte(data), v)
-	if err != nil {
+	if err != nil && len(data) > 0 {
 		fmt.Println("JsonDecode Error:", err, data)
 	}
 }
@@ -119,9 +120,31 @@ func SendRequestAndWaitUsrId(ch Channel, toPlugin string, cmd string, data Messa
 	ch.RequestOut <- msg
 
 	// wait for answer
-	buffer := <-answer
-	close(answer)
-	return buffer
+
+	timeout := 10 * time.Second
+
+	select {
+	case buffer := <-answer:
+		close(answer)
+		return buffer
+	case <-time.After(timeout):
+		fmt.Println(ch,"!!! -> CORE Timeout TO:", toPlugin, "CMD:", cmd, "DATA:", data)
+		return CreNull()
+	}
+}
+
+func SendRequestAndWaitUsrIdRAW(ch Channel, toPlugin string, cmd string, data MessageData, usrId string) chan MessageData {
+	var msg = RequestMessage{}
+	var answer = make(chan MessageData)
+	msg.ToPlugin = toPlugin
+	msg.Cmd = cmd
+	msg.UsrId = usrId
+	msg.Data = data
+	msg.SendAnswer = true
+	msg.Answer = answer
+	ch.RequestOut <- msg
+
+	return answer
 }
 
 func SendEvent(ch Channel, eventName string, data MessageData) {
