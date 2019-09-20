@@ -66,7 +66,7 @@ func TransVar(ch Channel, key string, vars []string) string {
 	return text
 }
 func TransPluginVar(ch Channel, plugin string, key string, vars []string) string {
-	text := TransPlugin(ch, key, plugin)
+	text := TransPlugin(ch, plugin, key)
 	//i := 0
 	for i, str := range vars{
 		text = strings.Replace(text, "$"+strconv.Itoa(i), str, -1)
