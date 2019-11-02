@@ -1,4 +1,4 @@
-package uiChart
+package ui
 
 
 type LineChart struct {

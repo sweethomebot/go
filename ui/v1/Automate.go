@@ -1,4 +1,4 @@
-package uiAutomate
+package ui
 
 
 type AutomateGrid struct {
