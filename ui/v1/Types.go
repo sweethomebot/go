@@ -21,11 +21,14 @@ const (
 
 type FunctionNameType string
 const (
+	FunctionAddBlock		= FunctionNameType("addBlock")
 	FunctionDriverButton	= FunctionNameType("driverButton")
 	FunctionLoad			= FunctionNameType("load")
 	FunctionOpenDialog		= FunctionNameType("openDialog")
 	FunctionLoadOpenDialog	= FunctionNameType("loadOpenDialog")
 	FunctionSendForm		= FunctionNameType("sendForm")
 	FunctionCallApi			= FunctionNameType("callApi")
+	FunctionCallApiColor	= FunctionNameType("callApiColor")
 	FunctionOpenStore		= FunctionNameType("openStore")
+	FunctionLogout			= FunctionNameType("logout")
 )

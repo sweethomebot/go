@@ -93,6 +93,14 @@ func NewIconMenu(icon string, title string, function Function) Menu {
 	return Menu{Type: "menu", MenuType:"menu", Icon: icon, Title: title, Function: function}
 }
 
+func NewMenuDevider() Menu {
+	return Menu{Type: "menu", MenuType:"divider", Title: ""}
+}
+
+func NewMenuHeadline(title string) Menu {
+	return Menu{Type: "menu", MenuType:"headline", Icon: "", Title: title}
+}
+
 
 type Dialog struct {
 	Type           string
@@ -160,4 +168,17 @@ type CardInfo struct {
 
 func NewCardInfo(title string) CardInfo {
 	return CardInfo{Type: "card_info", Title: title}
+}
+
+type CardSwitchColor struct {
+	Type      	string
+	Title     	string
+	Description string
+	ButtonOn   	Button
+	ButtonOff  	Button
+	ButtonColor	Button
+}
+
+func NewCardSwitchColor(title string, buttonOn, buttonOff, buttonColor Button) CardSwitchColor {
+	return CardSwitchColor{Type: "card_color", Title: title, ButtonOn: buttonOn, ButtonOff: buttonOff, ButtonColor: buttonColor}
 }

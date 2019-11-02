@@ -160,3 +160,15 @@ func RegisterASettingForm(ch Channel, form string) bool {
 func RegisterAPermissionForm(ch Channel, form string) bool {
 	return GetBool(SendRequestAndWait(ch, "permission", "registerAPermissionForm", CreText(form)))
 }
+
+func RegisterAProgramBlock(ch Channel, icon string, drv_url string, block_type string, title string, outputList []string) bool {
+	// INFO: needs: AutBlockExec
+	data := map[string]string{}
+	data["icon"] = icon
+	data["url"] = drv_url
+	data["type"] = block_type
+	data["title"] = title
+	data["outputList"] = strings.Join(outputList, ",")
+
+	return GetBool(SendRequestAndWait(ch, "automate", "registerAProgramBlock", CreMap(data)))
+}
