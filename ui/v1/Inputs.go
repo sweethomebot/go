@@ -2,7 +2,7 @@ package ui
 
 
 import (
-	"github.com/sweethomebot/go/core"
+	"github.com/sweethomebot/go/core/v1"
 )
 
 type Form struct {

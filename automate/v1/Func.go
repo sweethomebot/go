@@ -2,7 +2,7 @@ package automate
 
 import (
 	"fmt"
-	"github.com/sweethomebot/go/core"
+	"github.com/sweethomebot/go/core/v1"
 	"regexp"
 	"strings"
 )
