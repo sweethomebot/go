@@ -4,13 +4,11 @@ import (
 	"crypto/md5"
 	"encoding/json"
 	"fmt"
-	"github.com/google/uuid"
+	"github.com/sweethomebot/go/uuid/v1"
 	"io"
 	"strings"
 	"time"
 )
-
-//go:generate go get github.com/google/uuid
 
 type RequestMessage struct {
 	FromPlugin string
