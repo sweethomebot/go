@@ -67,6 +67,7 @@ func NewFormInput(ch core.Channel, transModul string, input FormInput, value str
 
 		callbackInput := NewInputCallback(core.TransPlugin(ch, transModul, input.Title), input.Name, btn)
 		callbackInput.Info = core.TransPlugin(ch, transModul, input.Info)
+		callbackInput.Value = value
 		callbackInput.BspValue = input.BspValue
 		if input.Disabled {
 			callbackInput.Disabled = true
